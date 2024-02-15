@@ -90,17 +90,14 @@ function clickHandler(event) {
   if (event.target === event.currentTarget) {
     return;
   }
-  const card = event.target.closest('.gallery-image');
-  const elClicked = card.dataset.source;
-  const clickedImage = images.find(image => image.original === elClicked);
-  const description = clickedImage ? clickedImage.description : '';
-modal = basicLightbox
-  .create(
-    `<div class="modal">
+  const elClicked = event.target.dataset.source;
+  const description = event.target.alt
+  modal = basicLightbox
+    .create(
+      `<div class="modal">
       <img src="${elClicked}" alt="${description}"/>
     </div>`
-  )
-  .show();
+    )
+    .show();
 }
 gallery.addEventListener('click', clickHandler);
-
